@@ -74,6 +74,13 @@ then
 	exit 0
 fi
 
+# Don't manage devices labelled EFI
+if [ "$LABEL" == "EFI" ]
+then
+    log "$dev has label $LABEL, automount won't manage it"
+    exit 0
+fi
+
 # Check /etc/fstab for an entry corresponding to the device
 [ "$UUID" ] && fstab=$(grep /etc/fstab -e "^[^#]*${UUID/\-/\\\-}") || \
 [ "$LABEL" ] && fstab=$(grep /etc/fstab -e "^[^#]*${LABEL/\-/\\\-}") || \
@@ -83,13 +90,6 @@ fstab=$(grep /etc/fstab -e "^[ \t]*$dev[ \t]")
 if [ "$fstab" ]
 then
     log "$dev already in /etc/fstab, automount won't manage it: ${fstab/[ \t][ \t]/ }"
-    exit 1
-fi
-
-# Don't manage devices labelled EFI
-if [ "$LABEL" == "EFI" ]
-then
-    log "$dev has label $LABEL, automount won't manage it"
     exit 1
 fi
 
