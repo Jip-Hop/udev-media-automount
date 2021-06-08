@@ -19,7 +19,7 @@ mediadir=/media
 shopt -s nullglob
 
 log() {
-    logger -st "media-automount" "$*"
+    echo "media-automount" "$*"
 }
 
 if ! [ "$1" ]
