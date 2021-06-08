@@ -79,6 +79,13 @@ then
     exit 1
 fi
 
+# Don't manage devices labelled EFI
+if [ "$LABEL" == "EFI" ]
+then
+    log "$dev has label EFI, automount won't manage it"
+    exit 1
+fi
+
 # directory name
 AUTOMOUNT_DIR="${mediadir}/${LABEL:-${dev##*/}}.$TYPE"
 
