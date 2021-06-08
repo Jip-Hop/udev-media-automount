@@ -82,7 +82,7 @@ fi
 # Don't manage devices labelled EFI
 if [ "$LABEL" == "EFI" ]
 then
-    log "$dev has label EFI, automount won't manage it"
+    log "$dev has label $LABEL, automount won't manage it"
     exit 1
 fi
 
