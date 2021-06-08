@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #$1 = <dev>
 
 # Default options to use for mounting
