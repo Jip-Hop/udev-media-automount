@@ -1,5 +1,5 @@
 # -*- bash -*-
 
 # Options to use for auto-mounting devices detected with a vfat filesystem 
-# AUTOMOUNT_OPTS=
+AUTOMOUNT_OPTS=noatime,flush
 
