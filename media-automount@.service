@@ -1,5 +1,8 @@
+[Unit]
+Description=Mount USB Drive on %I
+
 [Service]
 Type=oneshot
 RemainAfterExit=true
-ExecStart=/usr/bin/media-automount %I
-ExecStop=/usr/bin/media-automount %I
+ExecStart=/usr/bin/media-automount add %I
+ExecStop=/usr/bin/media-automount remove %I
