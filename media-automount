@@ -2,9 +2,9 @@
 #$1 = <dev>
 
 # Default options to use for mounting
-AUTOMOUNT_OPTS=''
+AUTOMOUNT_OPTS='noatime'
 # Default type to use for mounting
-AUTOMOUNT_TYPE='auto'
+AUTOMOUNT_TYPE=''
 
 # Runs after mounting
 POST_MOUNT='/etc/post_mount/run.sh'
@@ -112,7 +112,7 @@ fi
 
 log "mounting device $dev in $AUTOMOUNT_DIR"
 mkdir -p "$AUTOMOUNT_DIR"
-if mount -t "$AUTOMOUNT_TYPE ${AUTOMOUNT_OPTS:+"-o $AUTOMOUNT_OPTS "}$dev $AUTOMOUNT_DIR"
+if mount ${AUTOMOUNT_OPTS:+"-t $AUTOMOUNT_TYPE"} ${AUTOMOUNT_OPTS:+"-o $AUTOMOUNT_OPTS"} $dev $AUTOMOUNT_DIR
 then
     log "Device successfully mounted: $AUTOMOUNT_DIR"
     
