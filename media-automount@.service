@@ -1,4 +1,5 @@
 [Service]
-Type=simple
-GuessMainPID=no
+Type=oneshot
+RemainAfterExit=true
 ExecStart=/usr/bin/media-automount %I
+ExecStop=/usr/bin/media-automount %I
