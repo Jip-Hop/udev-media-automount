@@ -34,7 +34,7 @@ else
     # Check if it's actually a device partition
     if [[ -n "$(blkid $dev | grep PTTYPE)" ]]; then
         log "$dev is not a device partition"
-        exit 1
+        exit 0
     fi
 fi
 
@@ -98,7 +98,7 @@ fstab=$(grep /etc/fstab -e "^[ \t]*$dev[ \t]")
 if [ "$fstab" ]
 then
     log "$dev already in /etc/fstab, automount won't manage it: ${fstab/[ \t][ \t]/ }"
-    exit 1
+    exit 0
 fi
 
 # directory name
