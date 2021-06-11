@@ -2,7 +2,7 @@
 #$1 = <dev>
 
 # Default options to use for mounting
-AUTOMOUNT_OPTS='errors=remount-ro,relatime,utf8,user'
+AUTOMOUNT_OPTS=''
 # Default type to use for mounting
 AUTOMOUNT_TYPE='auto'
 
@@ -100,17 +100,14 @@ fi
 AUTOMOUNT_DIR="${mediadir}/${LABEL:-${dev##*/}}.$TYPE"
 
 # Load Filesystem-specific configuration for mounting
-if [ -e "%confdir/$TYPE" ]
+if [ -e "$confdir/$TYPE" ]
 then
 	source "$confdir/$TYPE"
-elif [ -e "$confdir/auto" ]
-then
-	source "$confdir/auto"
 fi
 
 log "mounting device $dev in $AUTOMOUNT_DIR"
 mkdir -p "$AUTOMOUNT_DIR"
-if mount -t "$AUTOMOUNT_TYPE" -o "$AUTOMOUNT_OPTS" "$dev" "$AUTOMOUNT_DIR"
+if mount -t "$AUTOMOUNT_TYPE ${AUTOMOUNT_OPTS:+"-o $AUTOMOUNT_OPTS "}$dev $AUTOMOUNT_DIR"
 then
     log "Device successfully mounted: $AUTOMOUNT_DIR"
     
