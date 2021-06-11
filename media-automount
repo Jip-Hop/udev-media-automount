@@ -112,7 +112,7 @@ fi
 
 log "mounting device $dev in $AUTOMOUNT_DIR"
 mkdir -p "$AUTOMOUNT_DIR"
-if mount ${AUTOMOUNT_OPTS:+"-t $AUTOMOUNT_TYPE"} ${AUTOMOUNT_OPTS:+"-o $AUTOMOUNT_OPTS"} $dev $AUTOMOUNT_DIR
+if mount ${AUTOMOUNT_TYPE:+-t $AUTOMOUNT_TYPE} ${AUTOMOUNT_OPTS:+-o $AUTOMOUNT_OPTS} $dev $AUTOMOUNT_DIR
 then
     log "Device successfully mounted: $AUTOMOUNT_DIR"
     
