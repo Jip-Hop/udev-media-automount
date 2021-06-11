@@ -140,7 +140,7 @@ do_mount()
         if [ -f "$POST_MOUNT" ]
         then
             # Run post mount script in background
-            "${POST_MOUNT}" "$AUTOMOUNT_DIR" "$DEVICE" &
+            "${POST_MOUNT}" "$AUTOMOUNT_DIR" "$DEVBASE" &
             log "Running mount script in background"
         fi
 
